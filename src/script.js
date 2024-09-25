@@ -56,12 +56,15 @@ function displayToast(arr) {
         const closeButton = document.createElement('button')
         
         text.innerText = toast.message;
+        closeButton.innerText = "x"
 
         toastDiv.className = 'toast'
+        closeButton.className = "close-button";
 
         toastDiv.style.borderBottom = `3px solid ${toast.color}`
 
         toastDiv.append(text);
+        toastDiv.append(closeButton)
         toastViewer.append(toastDiv);
     })
 }
@@ -72,3 +75,11 @@ buttons.forEach((btn, i) =>
     btn.addEventListener('click', 
         () => createToast(toastButtons, i))
 );
+
+function deleteNotification(arr, index) {
+    return arr.filter((element, i) => i !== index);
+}
+
+console.log(document.querySelectorAll(".close-button"))
+
+document.querySelectorAll(".close-button").forEach((btn, i) => btn.addEventListener('click', () => deleteNotification(toasts, i)))
